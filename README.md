@@ -37,7 +37,7 @@
 - belongs_to :user
 - has_one :purchase_history
 
-## shipping_address テーブル
+## shipping_addresses テーブル
 
 | Column           | Type       | Options                        |
 | ---------------- | ---------- | ------------------------------ |
@@ -51,9 +51,9 @@
 
 ### Association
 
--  :belongs_to :purchase_history
+-  :belongs_to :purchase_histories
 
-##  purchase_history テーブル
+##  purchase_histories テーブル
 
 | Column | Type       | Options                        |
 | ------ | ---------- | ------------------------------ |
@@ -64,5 +64,5 @@
 
 - belongs_to :user
 - belongs_to :item
-- belongs_to :shipping_address
+- has_one :shipping_address
 
