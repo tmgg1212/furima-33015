@@ -7,10 +7,10 @@
 | nickname           | string | null: false |
 | email              | string | null: false |
 | encrypted_password | string | null: false |
-| first name         | string | null: false |
-| last name          | string | null: false |
-| first name kana    | string | null: false |
-| last name kana     | string | null: false |
+| first_name         | string | null: false |
+| last_name          | string | null: false |
+| first_name_kana    | string | null: false |
+| last_name_kana     | string | null: false |
 | birthday           | date   | null: false |
 
 ### Association
@@ -37,28 +37,28 @@
 - has_one :shipping address
 - has_one :purchase history
 
-## shipping address テーブル
+## shipping_address テーブル
 
 | Column        | Type   | Options     |
 | ------------- | ------ | ----------- |
-| postal code   | string | null: false |
+| postal_code   | string | null: false |
 | prefectures   | string | null: false |
 | municipality  | string | null: false |
 | address       | string | null: false |
-| building name | string | null: false |
-| phone number  | string | null: false |
+| building_name | string | null: false |
+| phone_number  | string | null: false |
 
 ### Association
 
 - belongs_to :users
 - belongs_to :items
 
-##  purchase history テーブル
+##  purchase_history テーブル
 
 | Column          | Type       | Options                        |
 | --------------- | ---------- | ------------------------------ |
 | buyer           | references | null: false, foreign_key: true |
-| purchased item  | references | null: false,  foreign_key: true|
+| purchased_item  | references | null: false,  foreign_key: true|
 
 ### Association
 
