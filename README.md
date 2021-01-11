@@ -17,6 +17,7 @@
 
 - has_many :items
 - has_one :shipping address
+- has_one :purchase history
 
 ## items テーブル
 
@@ -34,17 +35,30 @@
 
 - has_many :users
 - has_one :shipping address
+- has_one :purchase history
 
 ## shipping address テーブル
 
-| Column        | Type       | Options |
-| ------------- | ---------- | ------- |
-| postal code   | string     |         |
+| Column        | Type   | Options     |
+| ------------- | ------ | ----------- |
+| postal code   | string | null: false |
 | prefectures   | string | null: false |
 | municipality  | string | null: false |
 | address       | string | null: false |
 | building name | string | null: false |
 | phone number  | string | null: false |
+
+### Association
+
+- belongs_to :users
+- belongs_to :items
+
+##  purchase history テーブル
+
+| Column          | Type       | Options                        |
+| --------------- | ---------- | ------------------------------ |
+| buyer           | references | null: false, foreign_key: true |
+| purchased item  | references | null: false,  foreign_key: true|
 
 ### Association
 
