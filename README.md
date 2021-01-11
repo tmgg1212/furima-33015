@@ -16,7 +16,7 @@
 ### Association
 
 - has_many :items 
-- has_many :purchase_history
+- has_many :purchase_historys
 
 ## items テーブル
 
@@ -42,7 +42,7 @@
 | Column           | Type       | Options                        |
 | ---------------- | ---------- | ------------------------------ |
 | postal_code      | string     | null: false                    |
-| prefectures      | integer    | null: false                    |
+| area_id          | integer    | null: false                    |
 | municipality     | string     | null: false                    |
 | address          | string     | null: false                    |
 | building_name    | string     |                                |
@@ -51,6 +51,7 @@
 
 ### Association
 
+-  :belongs_to :purchase_history
 
 ##  purchase_history テーブル
 
@@ -63,3 +64,5 @@
 
 - belongs_to :user
 - belongs_to :item
+- belongs_to :shipping_address
+
