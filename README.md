@@ -51,7 +51,7 @@
 
 ### Association
 
--  :belongs_to :purchase_history
+- belongs_to :purchase_history
 
 ##  purchase_histories テーブル
 
