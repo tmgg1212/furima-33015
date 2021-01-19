@@ -28,4 +28,5 @@ class Item < ApplicationRecord
   belongs_to :schedule
 
   has_one_attached :image
+  belongs_to :user
 end
