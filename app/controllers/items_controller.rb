@@ -26,7 +26,8 @@ class ItemsController < ApplicationController
     if item.user == current_user
       item.destroy
       redirect_to root_path
-    false user_signed_in?
+    false 
+        user_signed_in?
     end
   end
 
