@@ -3,11 +3,11 @@ class Item < ApplicationRecord
     validates :name
     validates :price, numericality: { only_integer: true },
                       numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
-    validates :category_id
-    validates :condition_id
-    validates :charges_id
-    validates :area_id
-    validates :schedule_id
+    validates :category_id, numericality: { other_than: 0 }
+    validates :condition_id, numericality: { other_than: 0 }
+    validates :charges_id, numericality: { other_than: 0 }
+    validates :area_id, numericality: { other_than: 0 }
+    validates :schedule_id, numericality: { other_than: 0 }
     validates :explanation
     validates :image
   end
