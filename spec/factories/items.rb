@@ -8,7 +8,7 @@ FactoryBot.define do
     area_id         { 1 }
     schedule_id     { 1 }
     explanation     { 'テスト' }
-    user_id         { 1 }
+    user_id         { 'user.id' }
 
     after(:build) do |item|
       item.image.attach(io: File.open('app/assets/images/item-sample.png'), filename: 'item-sample.png')

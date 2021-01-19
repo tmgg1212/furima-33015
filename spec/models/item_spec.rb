@@ -26,9 +26,19 @@ RSpec.describe Item, type: :model do
       expect(@item.errors.full_messages).to include("Explanation can't be blank")
     end
     it 'カテゴリーの情報が必須であること' do
+      @item.category_id = ''
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Category can't be blank")
+    end
+    it 'カテゴリーの情報が必須であること' do
       @item.category_id = '0'
       @item.valid?
       expect(@item.errors.full_messages).to include("Category must be other than 0")
+    end
+    it '商品の状態についての情報が必須であること' do
+      @item.condition_id = ''
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Condition can't be blank")
     end
     it '商品の状態についての情報が必須であること' do
       @item.condition_id = '0'
@@ -36,14 +46,29 @@ RSpec.describe Item, type: :model do
       expect(@item.errors.full_messages).to include("Condition must be other than 0")
     end
     it '配送料の負担についての情報が必須であること' do
+      @item.charges_id = ''
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Charges can't be blank")
+    end
+    it '配送料の負担についての情報が必須であること' do
       @item.charges_id = '0'
       @item.valid?
       expect(@item.errors.full_messages).to include("Charges must be other than 0")
     end
     it '発送元の地域についての情報が必須であること' do
+      @item.area_id = ''
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Area can't be blank")
+    end
+    it '発送元の地域についての情報が必須であること' do
       @item.area_id = '0'
       @item.valid?
       expect(@item.errors.full_messages).to include("Area must be other than 0")
+    end
+    it '発送までの日数についての情報が必須であること' do
+      @item.schedule_id = ''
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Schedule can't be blank")
     end
     it '発送までの日数についての情報が必須であること' do
       @item.schedule_id = '0'
