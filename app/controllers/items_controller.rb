@@ -10,7 +10,7 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = Item.create(item_params)
+    @item = Item.new(item_params)
     if @item.save
       redirect_to root_path
     else
@@ -28,8 +28,7 @@ class ItemsController < ApplicationController
   end
 
   def update
-    @item.find(item_params)
-    if @item.save
+    if @item.update(item_params)
       redirect_to root_path
     else
       render :edit
@@ -37,9 +36,8 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    @item = Item.find(item_params)
-    if item.user == current_user
-      item.destroy
+    if @item.user == current_user
+      @item.destroy
       redirect_to root_path
     else
       redirect_to item_path
