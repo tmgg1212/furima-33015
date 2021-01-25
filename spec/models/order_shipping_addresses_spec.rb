@@ -12,17 +12,17 @@ RSpec.describe OrderShippingAddresses, type: :model do
     it '郵便番号が必須であること' do
       @ordershipping_addresses.postal_code = ''
       @ordershipping_addresses.valid?
-      expect(@ordershipping_addresses.errors.full_messages).to include("Postal_code can't be blank")
+      expect(@ordershipping_addresses.errors.full_messages).to include("Postal code can't be blank")
     end
     it '郵便番号にはハイフンが必要' do
       @ordershipping_addresses.postal_code = '1111111'
       @ordershipping_addresses.valid?
-      expect(@ordershipping_addresses.errors.full_messages).to include("Postal_code can't be blank")
+      expect(@ordershipping_addresses.errors.full_messages).to include("Postal code is invalid")
     end
     it '都道府県が必須であること' do
       @ordershipping_addresses.area_id = ''
       @ordershipping_addresses.valid?
-      expect(@ordershipping_addresses.errors.full_messages).to include("Area_id can't be blank")
+      expect(@ordershipping_addresses.errors.full_messages).to include("Area can't be blank")
     end
     it '市区町村が必須であること' do
       @ordershipping_addresses.municipality = ''
@@ -37,17 +37,22 @@ RSpec.describe OrderShippingAddresses, type: :model do
     it '電話番号が必須であること' do
       @ordershipping_addresses.phone_number = ''
       @ordershipping_addresses.valid?
-      expect(@ordershipping_addresses.errors.full_messages).to include("Phone_number can't be blank")
+      expect(@ordershipping_addresses.errors.full_messages).to include("Phone number can't be blank")
     end
     it '電話番号はハイフンは不要' do
       @ordershipping_addresses.phone_number = '111-1111-1111'
       @ordershipping_addresses.valid?
-      expect(@ordershipping_addresses.errors.full_messages).to include('Phone_number must be other than 0')
+      expect(@ordershipping_addresses.errors.full_messages).to include('Phone number is not a number')
     end
     it '電話番号は11桁必須であること' do
       @ordershipping_addresses.phone_number = '1'
       @ordershipping_addresses.valid?
-      expect(@ordershipping_addresses.errors.full_messages).to include("Phone_number can't be blank")
+      expect(@ordershipping_addresses.errors.full_messages).to include("Phone number is invalid")
+    end
+    it "tokenが空では登録できないこと" do
+      @ordershipping_addresses.token = nil
+      @ordershipping_addresses.valid?
+      expect(@ordershipping_addresses.errors.full_messages).to include("Token can't be blank")
     end
   end
 end

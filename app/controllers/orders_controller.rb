@@ -9,6 +9,7 @@ class OrdersController < ApplicationController
     @item = Item.find(params[:item_id])
     @ordershipping_addresses = OrderShippingAddresses.new(ordershipping_address_params)
     if @ordershipping_addresses.valid?
+      pay_item
       @ordershipping_addresses.save
       redirect_to root_path
     else
@@ -20,6 +21,16 @@ class OrdersController < ApplicationController
   private
 
   def ordershipping_address_params
-    params.require(:order_shipping_addresses).permit(:postal_code, :area_id, :municipality, :address, :building_name, :phone_number, :order_id).merge(user_id: current_user.id, item_id: @item.id)
+    params.require(:order_shipping_addresses).permit(:postal_code, :area_id, :municipality, :address, :building_name, :phone_number, :order_id).merge(user_id: current_user.id, item_id: @item.id, token: params[:token])
   end
+
+  def pay_item
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"] 
+    Payjp::Charge.create(
+      amount: @item[:price],
+      card: ordershipping_address_params[:token],
+      currency: 'jpy'
+    )
+  end
+
 end
