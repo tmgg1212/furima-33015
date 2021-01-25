@@ -10,6 +10,8 @@ class OrderShippingAddresses
     validates :address
     validates :phone_number, numericality: { only_integer: true },format: { with: /\A[0-9]{11}\z/ }
     validates :token
+    validates :user_id
+    validates :item_id
   end
   def save
     order = Order.create(user_id: user_id, item_id: item_id)
