@@ -7,6 +7,10 @@ RSpec.describe OrderShippingAddresses, type: :model do
     it 'すべての項目が記載されていれば登録できる' do
       expect(@ordershipping_addresses).to be_valid
     end
+    it "建物名が抜けていても登録できること" do
+      @ordershipping_addresses.building_name = ''
+      expect(@ordershipping_addresses).to be_valid
+    end
   end
   context '商品の購入ができないとき' do
     it '郵便番号が必須であること' do
@@ -23,6 +27,11 @@ RSpec.describe OrderShippingAddresses, type: :model do
       @ordershipping_addresses.area_id = ''
       @ordershipping_addresses.valid?
       expect(@ordershipping_addresses.errors.full_messages).to include("Area can't be blank")
+    end
+    it '０以外でないと登録できないこと' do
+      @ordershipping_addresses.area_id = 0
+      @ordershipping_addresses.valid?
+      expect(@ordershipping_addresses.errors.full_messages).to include("Area must be other than 0")
     end
     it '市区町村が必須であること' do
       @ordershipping_addresses.municipality = ''
@@ -49,8 +58,13 @@ RSpec.describe OrderShippingAddresses, type: :model do
       @ordershipping_addresses.valid?
       expect(@ordershipping_addresses.errors.full_messages).to include("Phone number is invalid")
     end
+    it '英数混合では登録できないこと' do
+      @ordershipping_addresses.phone_number = '1a2a3a3a2a1'
+      @ordershipping_addresses.valid?
+      expect(@ordershipping_addresses.errors.full_messages).to include("Phone number is invalid")
+    end
     it "tokenが空では登録できないこと" do
-      @ordershipping_addresses.token = nil
+      @ordershipping_addresses.token = ''
       @ordershipping_addresses.valid?
       expect(@ordershipping_addresses.errors.full_messages).to include("Token can't be blank")
     end

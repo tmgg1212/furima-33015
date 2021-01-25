@@ -5,7 +5,7 @@ class OrderShippingAddresses
     
   with_options presence: true do
     validates :postal_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/ }
-    validates :area_id
+    validates :area_id, numericality: { other_than: 0 }
     validates :municipality
     validates :address
     validates :phone_number, numericality: { only_integer: true },format: { with: /\A[0-9]{11}\z/ }
