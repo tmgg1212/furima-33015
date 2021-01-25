@@ -19,6 +19,9 @@ class ItemsController < ApplicationController
   end
 
   def show
+    if @item.order != nil
+      redirect_to root_path
+    end
   end
 
   def edit
