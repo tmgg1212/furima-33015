@@ -37,7 +37,7 @@
 - belongs_to :user
 - has_one :purchase_history
 
-## shipping_addresses テーブル
+## shipping_address テーブル
 
 | Column           | Type       | Options                        |
 | ---------------- | ---------- | ------------------------------ |
@@ -47,13 +47,13 @@
 | address          | string     | null: false                    |
 | building_name    | string     |                                |
 | phone_number     | string     | null: false                    |
-| purchase_history | references | null: false, foreign_key: true |
+| order            | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :purchase_history
+- belongs_to :order
 
-##  purchase_histories テーブル
+##  orders テーブル
 
 | Column | Type       | Options                        |
 | ------ | ---------- | ------------------------------ |
