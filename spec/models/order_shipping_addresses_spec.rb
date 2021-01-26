@@ -1,7 +1,10 @@
 require 'rails_helper'
 RSpec.describe OrderShippingAddresses, type: :model do
   before do
-    @ordershipping_addresses = FactoryBot.build(:order_shipping_addresses)
+    user = FactoryBot.create(:user)
+    item = FactoryBot.create(:item, user_id: user.id)
+    @ordershipping_addresses = FactoryBot.build(:order_shipping_addresses, item_id: item.id, user_id: user.id)
+    sleep 1
   end
   context '商品の購入ができるとき' do
     it 'すべての項目が記載されていれば登録できる' do
