@@ -8,7 +8,7 @@ class OrderShippingAddresses
     validates :area_id, numericality: { other_than: 0 }
     validates :municipality
     validates :address
-    validates :phone_number, numericality: { only_integer: true }, length: { maximum: 11 }
+    validates :phone_number, numericality: { only_integer: true }, format: { with: /\A[0-9]{11}\z/ }
     validates :token
     validates :user_id
     validates :item_id
